@@ -15,24 +15,33 @@ int main(){
     string element = "";
     char character;
     for (int i=1; i < s.length(); i++){
-        character = s[i];
+        character = st.top();
 
-        if (st.top() != character || i == s.length() - 1){     
-            if (i == s.length() - 1)
-                st.push(character);
-                
-            element += st.top();
-
+        if (st.top() != s[i]){
+            element += character;
             int count = 0;
             
             while (!st.empty()){
                 st.pop();
                 count++;
             }
-            // cout << char (count + '0') << endl;
+
             element += char (count + '0');
         }
-        st.push(character);
+        st.push(s[i]);
+    }
+
+    while (!st.empty()){
+        character = st.top();
+        element += character;
+        int count = 0;
+            
+        while (!st.empty()){
+            st.pop();
+            count++;
+        }
+
+        element += char (count + '0');
     }
     cout << element;
 	return 0;
